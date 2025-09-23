@@ -48,6 +48,10 @@ body {
     margin-bottom: 32px;
 }
 
+#imagens-produtos{
+    max-width: 600px;
+}
+
 .container .categorias-cartas, .container .preco-cartas {
     display: flex;
     flex-direction: column;
