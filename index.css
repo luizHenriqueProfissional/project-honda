@@ -49,8 +49,10 @@ body {
 }
 
 #imagens-produtos{
-    height: 423px;
-    max-width: 600px;
+    height: 425px;
+    max-width: 500px;
+    margin: 0;
+    padding: 0;
 }
 
 .container .categorias-cartas, .container .preco-cartas {
