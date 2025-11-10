@@ -1,3 +1,4 @@
+
 /*Reset*/
 * {
     padding: 0;
@@ -49,7 +50,7 @@ body {
 }
 
 #imagens-produtos{
-    height: 425px;
+    height: 355px;
     max-width: 500px;
     margin: 0;
     padding: 0;
