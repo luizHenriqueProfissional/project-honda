@@ -1,48 +1,34 @@
-/*
-  O que precisamos fazer? - Quando o usuário clicar no botão "Aplicar filtros", vamos filtrar as cartas baseado na categoria e no preço máximo selecionados
-    OBJETIVO 1 - Criar a funcionalidade de filtrar as cartas
-        passo 1 - pegar o botao de aplicar filtros  do HTML e mandar pro JS
-        passo 2 - escutar o clique no botão de aplicar filtros
-        passo 3 - pegar os valores dos campos de categoria e preço
-        passo 4 - para cada carta, verificar se ela deve ser mostrada ou escondida 
-*/
-//        passo 1 - pegar o botao de aplicar filtros  do HTML e mandar pro JS
+// Passo 1 - Pegar o botão
+const botaoFiltrar = document.querySelector('.btn-filtrar');
 
-const botaoFiltrar = document.querySelector('.btn-filtrar')
-
-//        passo 2 - escutar o clique no botão de aplicar filtros
-
+// Passo 2 - Escutar o clique
 botaoFiltrar.addEventListener('click', function (evento) {
     evento.preventDefault();
-    //        passo 3 - pegar os valores dos campos de categoria e preço
-    const categoriaSelecionada = document.querySelector('#categoria').value;
-    const precoMaximoSelecionado = document.querySelector('#preco').value;
 
-    //        passo 4 - para cada carta, verificar se ela deve ser mostrada ou escondida
+    // Passo 3 - Pegar os valores dos selects
+    const categoriaSelecionada = document.querySelector('#categoria').value.toLowerCase();
+    const motocicletaSelecionada = document.querySelector('#motocicleta').value.toLowerCase();
 
+    // Passo 4 - Selecionar todas as cartas
     const cartas = document.querySelectorAll('.carta');
+
     cartas.forEach(function (carta) {
+        const categoriaProduto = carta.dataset.categoria.toLowerCase();
+        const categoriaMoto = carta.dataset.moto.toLowerCase();
 
-        //Filtro de carta
-        const categoriaCarta = carta.dataset.categoria;
-        const precoaCarta = carta.dataset.preco;
+        let mostrarCarta = true;
 
-        let mostrarCarta = true
-        const temFiltroDeCategoria = categoriaSelecionada !== ''
-        const cartaNaoBateComFiltroDeCategoria = categoriaSelecionada.toLowerCase() !== categoriaCarta.toLowerCase()
-
-        if (temFiltroDeCategoria && cartaNaoBateComFiltroDeCategoria) {
-            mostrarCarta = false
-        }
-
-        //Filtro de preço
-        const temFiltroDePreco = precoMaximoSelecionado !== '';
-        const cartaNaoBateComFiltroDePrecoMaximo = parseFloat(precoaCarta) > parseFloat(precoMaximoSelecionado)
-
-        if (temFiltroDePreco && cartaNaoBateComFiltroDePrecoMaximo) {
+        // Filtro de categoria
+        if (categoriaSelecionada && categoriaSelecionada !== categoriaProduto) {
             mostrarCarta = false;
         }
 
+        // Filtro de motocicleta
+        if (motocicletaSelecionada && motocicletaSelecionada !== categoriaMoto) {
+            mostrarCarta = false;
+        }
+
+        // Mostrar ou esconder carta
         if (mostrarCarta) {
             carta.classList.add('mostrar');
             carta.classList.remove('esconder');
@@ -51,4 +37,4 @@ botaoFiltrar.addEventListener('click', function (evento) {
             carta.classList.remove('mostrar');
         }
     });
-})
+});
